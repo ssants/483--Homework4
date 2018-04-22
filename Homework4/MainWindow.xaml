@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Homework4"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Closing="Window_Closing"
+        Title="Tic Tac Toe" Height="520" Width="380">
+    <Canvas Background="{Binding MainBackground}">
+        <ItemsControl x:Name="IControl" Width="300" Height="320" Margin="37,10,25,0" HorizontalAlignment="Center" VerticalAlignment="Top" >
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Height="100" Width="100" Name="butt" Click="tileHandler" Background="{Binding tBackground}" IsEnabled="{Binding tEnabled}">
+                        <TextBlock Text="{Binding tLabel}" Foreground="{Binding tBrush}" FontSize="69" FontWeight="Bold"  TextAlignment="Center"/>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+        <Button Content="{Binding Start}" HorizontalAlignment="Left" Canvas.Left="123" Canvas.Top="335" VerticalAlignment="Top" Width="135" Height="40" FontSize="24" Click="startHandler" IsEnabled="{Binding StartEnabled}"/>
+        <Button Content="?" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" FontSize="18" Click="setupHandler" Canvas.Left="327" Canvas.Top="340"/>
+        <GroupBox Header="{Binding StatusHeader}" Foreground="{Binding StatusColor}" BorderBrush="{Binding StatusColor}" HorizontalAlignment="Left" Height="83" Margin="5,385,0,0" VerticalAlignment="Top" Width="352">
+            <TextBlock Text="{Binding Status}" Margin="16,10,0,0" Foreground="{Binding StatusColor}"/>
+        </GroupBox>
+    </Canvas>
 </Window>
